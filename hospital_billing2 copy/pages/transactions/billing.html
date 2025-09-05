@@ -1,0 +1,222 @@
+<!-- Billing Module -->
+<div class="billing-container">
+  <div class="billing-card">
+    <div class="billing-header">
+      <div class="billing-icon">
+        <i class="bi bi-receipt"></i>
+      </div>
+      <h2>Billing Management</h2>
+      <p>Track and manage patient billing based on admissions</p>
+    </div>
+
+    <div class="filter-section">
+      <h5><i class="bi bi-funnel"></i> Filter Billing Records</h5>
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label for="patientFilter" class="form-label">Patient</label>
+          <select class="form-select" id="patientFilter">
+            <option value="">All Patients</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="statusFilter" class="form-label">Status</label>
+          <select class="form-select" id="statusFilter">
+            <option value="">All Statuses</option>
+            <option value="Completed">Completed</option>
+            <option value="Pending">Pending</option>
+            <option value="Despensed">Despensed</option>
+            <option value="Discharged">Discharged</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="dateRangeFilter" class="form-label">Date Range</label>
+          <input type="date" class="form-control" id="dateRangeFilter" />
+        </div>
+      </div>
+      <div class="mt-3 d-flex justify-content-end">
+        <button class="btn btn-billing me-2" id="searchBillingBtn">
+          <i class="bi bi-search me-2"></i>Search
+        </button>
+        <button class="btn btn-add-billing me-2" id="addBillingBtn">
+          <i class="bi bi-plus-circle me-2"></i>Add Manual Billing
+        </button>
+        <button class="btn btn-success" id="addAutoBillingBtn">
+          <i class="bi bi-lightning-charge me-2"></i>Add Automated Billing
+        </button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-hover" id="billingTable">
+        <thead class="table-light">
+          <tr>
+            <th>Patient</th>
+            <th>Admission ID</th>
+            <th>Service Type</th>
+            <th>Gross Amount</th>
+            <th>Net Amount</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th style="width: 150px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="billingTableBody">
+          <tr><td colspan="8" class="text-center text-muted py-3">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="modalContainer">
+  <!-- Billing Modal -->
+  <div class="modal fade" id="billingModal" tabindex="-1" aria-labelledby="billingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="billingModalLabel">Billing Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="billingForm">
+            <input type="hidden" id="billingId">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="patientSelect" class="form-label">Patient</label>
+                <select class="form-select" id="patientSelect" required></select>
+              </div>
+              <div class="col-md-6">
+                <label for="admissionSelect" class="form-label">Admission ID</label>
+                <select class="form-select" id="admissionSelect" required></select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="categorySelect" class="form-label">Billing Category</label>
+                <select class="form-select" id="categorySelect" required></select>
+              </div>
+              <div class="col-md-6">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" required>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="quantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="quantity" min="1" value="1" required>
+              </div>
+              <div class="col-md-4">
+                <label for="unitPrice" class="form-label">Unit Price</label>
+                <input type="number" class="form-control" id="unitPrice" min="0" step="0.01" required>
+              </div>
+              <div class="col-md-4">
+                <label for="discount" class="form-label">Discount %</label>
+                <input type="number" class="form-control" id="discount" min="0" max="100" value="0">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <label for="tax" class="form-label">Tax %</label>
+                <input type="number" class="form-control" id="tax" min="0" max="100" value="0">
+              </div>
+              <div class="col-md-4">
+                <label for="insuranceCoverage" class="form-label">Insurance Coverage %</label>
+                <input type="number" class="form-control" id="insuranceCoverage" min="0" max="100" value="0">
+              </div>
+              <div class="col-md-4">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" required>
+                  <option value="pending">Pending</option>
+                  <option value="paid">Paid</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="grossAmount" class="form-label">Gross Amount</label>
+                <input type="text" class="form-control" id="grossAmount" readonly>
+              </div>
+              <div class="col-md-6">
+                <label for="netAmount" class="form-label">Net Amount</label>
+                <input type="text" class="form-control" id="netAmount" readonly>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="patientResponsibility" class="form-label">Patient Responsibility</label>
+                <input type="text" class="form-control" id="patientResponsibility" readonly>
+              </div>
+              <div class="col-md-6">
+                <label for="billingDate" class="form-label">Billing Date</label>
+                <input type="date" class="form-control" id="billingDate" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="saveBillingBtn">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Automated Billing Modal -->
+  <div class="modal fade" id="autoBillingModal" tabindex="-1" aria-labelledby="autoBillingModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="autoBillingModalLabel">Generate Automated Billing</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="autoBillingForm">
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="autoAdmissionSelect" class="form-label">Admission ID</label>
+                <select class="form-select" id="autoAdmissionSelect" required></select>
+              </div>
+              <div class="col-md-6">
+                <label for="autoCategorySelect" class="form-label">Billing Category</label>
+                <select class="form-select" id="autoCategorySelect" required></select>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12">
+                <label for="autoItemSelect" class="form-label">Select Item</label>
+                <select class="form-select" id="autoItemSelect" required></select>
+                <small class="text-muted">Items are loaded based on the selected category's source table.</small>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="autoQuantity" class="form-label">Quantity</label>
+                <input type="number" class="form-control" id="autoQuantity" min="1" value="1" required>
+              </div>
+              <div class="col-md-6">
+                <label for="autoDescription" class="form-label">Description (Optional)</label>
+                <input type="text" class="form-control" id="autoDescription">
+                <small class="text-muted">Leave blank to use item name as description</small>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="autoInsuranceCoverage" class="form-label">Insurance Coverage %</label>
+                <input type="number" class="form-control" id="autoInsuranceCoverage" min="0" max="100" value="0">
+              </div>
+              <div class="col-md-6">
+                <label for="autoBillingDate" class="form-label">Billing Date</label>
+                <input type="date" class="form-control" id="autoBillingDate" required>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="generateBillingBtn">Generate Billing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

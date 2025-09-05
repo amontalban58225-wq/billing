@@ -1,0 +1,47 @@
+<!-- lab_test_category.html - Clean HTML for Dashboard Loading -->
+<div class="container-fluid p-4 lab-test-category-module">
+  <div class="row">
+    <div class="col-12">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h3 class="mb-1 text-primary">
+            <i class="bi bi-diagram-3 me-2"></i>Lab Test Categories
+          </h3>
+          <p class="text-muted mb-0">Manage lab test categories and handling fees</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="addCategoryBtn">
+          <i class="bi bi-plus-circle me-2"></i>Add New Category
+        </button>
+      </div>
+
+      <!-- Data Table -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Categories List</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0" id="categoriesTable">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Handling Fee</th>
+                  <th>Turnaround Days</th>
+                  <th width="180">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="categoriesTableBody">
+                <!-- Data will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Lab Test Category Modal Template -->
+<!-- This will be dynamically populated by the LabTestCategoryManager class in lab_test_category.js -->
+<!-- The modal will be inserted here when needed -->

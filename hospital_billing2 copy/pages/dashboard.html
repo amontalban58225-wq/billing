@@ -1,0 +1,90 @@
+<!-- dashboard-fragment.html -->
+<div class="container py-4">
+  <h2 class="section-title text-primary mb-5 text-center">Admin Dashboard</h2>
+  <div class="row g-4">
+
+    <!-- Active Admissions -->
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card shadow-sm border-0 rounded-4 p-4 h-100 text-white bg-success" role="region" aria-label="Active Admissions">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-door-open-fill dashboard-icon me-3" aria-hidden="true"></i>
+          <div>
+            <h5 class="mb-1">Active Admissions</h5>
+            <h2 id="activeAdmissions" class="fw-bold">0</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rooms Occupied -->
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card shadow-sm border-0 rounded-4 p-4 h-100 text-white bg-warning" role="region" aria-label="Rooms Occupied">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-house-fill dashboard-icon me-3" aria-hidden="true"></i>
+          <div>
+            <h5 class="mb-1">Rooms Occupied</h5>
+            <h2 id="roomsOccupied" class="fw-bold">0</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Lab Requests -->
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card shadow-sm border-0 rounded-4 p-4 h-100 text-white bg-danger" role="region" aria-label="Pending Lab Requests">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-flask dashboard-icon me-3" aria-hidden="true"></i>
+          <div>
+            <h5 class="mb-1">Pending Lab Requests</h5>
+            <h2 id="pendingLabRequests" class="fw-bold">0</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Billing Records -->
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card shadow-sm border-0 rounded-4 p-4 h-100 bg-light border-primary text-dark" role="region" aria-label="Billing Records">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-cash-stack dashboard-icon text-primary me-3" aria-hidden="true"></i>
+          <div>
+            <h5 class="mb-1">Billing Records</h5>
+            <h2 id="totalBilling" class="fw-bold">₱0.00</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payments Received -->
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      <div class="card shadow-sm border-0 rounded-4 p-4 h-100 text-white bg-secondary" role="region" aria-label="Payments Received">
+        <div class="d-flex align-items-center">
+          <i class="bi bi-credit-card-2-front-fill dashboard-icon me-3" aria-hidden="true"></i>
+          <div>
+            <h5 class="mb-1">Payments Received</h5>
+            <h2 id="totalPayments" class="fw-bold">₱0.00</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  .dashboard-icon {
+    font-size: 3.5rem;
+    opacity: 0.85;
+  }
+
+  .section-title {
+    font-weight: 700;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .card:hover {
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+  }
+</style>

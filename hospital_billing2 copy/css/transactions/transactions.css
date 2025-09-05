@@ -1,0 +1,268 @@
+/* Transaction Module Styles */
+.transaction-module {
+  background: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Consistent Card Styling */
+.transaction-module .card {
+  border: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.transaction-module .card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.transaction-module .card-header {
+  background: #fff;
+  border-bottom: 1px solid #e9ecef;
+  border-radius: 8px 8px 0 0 !important;
+  padding: 1rem 1.5rem;
+}
+
+.transaction-module .card-body {
+  padding: 1.5rem;
+}
+
+/* Table Styling */
+.transaction-module .table {
+  margin-bottom: 0;
+}
+
+.transaction-module .table thead th {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+  font-weight: 600;
+  color: #495057;
+  padding: 1rem 0.75rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.transaction-module .table tbody td {
+  padding: 1rem 0.75rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #f1f3f4;
+}
+
+.transaction-module .table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+/* Fade Row Animation */
+.fade-row {
+  animation: fadeInRow 0.5s ease-in-out;
+}
+
+@keyframes fadeInRow {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Button Styling */
+.transaction-module .btn {
+  border-radius: 6px;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.transaction-module .btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.transaction-module .btn-primary {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  border: none;
+}
+
+.transaction-module .btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3, #004085);
+}
+
+/* Action Buttons */
+.transaction-module .btn-sm {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.transaction-module .btn-info {
+  background: linear-gradient(135deg, #17a2b8, #138496);
+  border: none;
+  color: white;
+}
+
+.transaction-module .btn-warning {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+  border: none;
+  color: #212529;
+}
+
+.transaction-module .btn-danger {
+  background: linear-gradient(135deg, #dc3545, #c82333);
+  border: none;
+}
+
+/* Badge Styling */
+.transaction-module .badge {
+  font-size: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Form Controls */
+.transaction-module .form-control,
+.transaction-module .form-select {
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  padding: 0.75rem;
+  transition: all 0.2s ease;
+}
+
+.transaction-module .form-control:focus,
+.transaction-module .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.transaction-module .form-label {
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.5rem;
+}
+
+/* Modal Styling */
+.transaction-module .modal-content {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.transaction-module .modal-header {
+  border-radius: 12px 12px 0 0;
+  padding: 1.5rem;
+}
+
+.transaction-module .modal-body {
+  padding: 1.5rem;
+}
+
+.transaction-module .modal-footer {
+  border-radius: 0 0 12px 12px;
+  padding: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Loading States */
+.transaction-module .spinner-border {
+  width: 2rem;
+  height: 2rem;
+}
+
+.transaction-module .text-muted {
+  color: #6c757d !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .transaction-module .container-fluid {
+    padding: 1rem;
+  }
+  
+  .transaction-module .card-body {
+    padding: 1rem;
+  }
+  
+  .transaction-module .table-responsive {
+    font-size: 0.875rem;
+  }
+  
+  .transaction-module .btn {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Status Badge Colors */
+.badge.bg-success {
+  background: linear-gradient(135deg, #28a745, #20c997) !important;
+}
+
+.badge.bg-warning {
+  background: linear-gradient(135deg, #ffc107, #fd7e14) !important;
+  color: #212529 !important;
+}
+
+.badge.bg-danger {
+  background: linear-gradient(135deg, #dc3545, #c82333) !important;
+}
+
+.badge.bg-secondary {
+  background: linear-gradient(135deg, #6c757d, #495057) !important;
+}
+
+.badge.bg-info {
+  background: linear-gradient(135deg, #17a2b8, #138496) !important;
+}
+
+/* Input Group Styling */
+.transaction-module .input-group-text {
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  border-right: none;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.transaction-module .input-group .form-control {
+  border-left: none;
+}
+
+.transaction-module .input-group .form-control:focus + .input-group-text {
+  border-color: #007bff;
+}
+
+/* Alert Styling */
+.alert.position-fixed {
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  font-weight: 500;
+}
+
+/* Smooth Transitions */
+.transaction-module * {
+  transition: all 0.2s ease;
+}
+
+/* Custom Scrollbar */
+.transaction-module .table-responsive::-webkit-scrollbar {
+  height: 8px;
+}
+
+.transaction-module .table-responsive::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.transaction-module .table-responsive::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.transaction-module .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

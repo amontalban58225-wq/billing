@@ -1,0 +1,51 @@
+<!-- role.html - Role Management Interface -->
+<div class="container-fluid p-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h3 class="mb-1 text-primary">
+            <i class="bi bi-shield-lock me-2"></i>Roles Management
+          </h3>
+          <p class="text-muted mb-0">Manage user roles and permissions</p>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary" id="addRoleBtn">
+            <i class="bi bi-plus-circle me-2"></i>Add New Role
+          </button>
+        </div>
+      </div>
+
+      <!-- Data Table -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Roles List</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" id="rolesTable">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Permissions</th>
+                  <th width="180">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="rolesTableBody">
+                <tr>
+                  <td colspan="4" class="text-center py-3 text-muted">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Role Modal Template -->
+<!-- This will be dynamically populated by the RoleManager class in roles.js -->
+<!-- The modal will be inserted here when needed -->

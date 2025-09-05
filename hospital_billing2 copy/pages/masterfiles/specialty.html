@@ -1,0 +1,54 @@
+<div class="container-fluid p-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h3 class="mb-1 text-primary">
+            <i class="bi bi-heart-pulse me-2"></i>Specialty Management
+          </h3>
+          <p class="text-muted mb-0">Manage medical specialties and departments</p>
+        </div>
+        <button id="addSpecialtyBtn" class="btn btn-primary">
+          <i class="bi bi-plus-circle me-2"></i>Add New Specialty
+        </button>
+      </div>
+
+      <div class="mb-3">
+        <input
+          type="text"
+          id="specialtySearch"
+          class="form-control"
+          placeholder="Search specialties..."
+        />
+      </div>
+
+      <!-- Data Table -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Specialty List</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0" id="specialtyTable">
+              <thead class="table-light">
+                <tr>
+                  <th>Name</th>
+                  <th width="180">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="specialtyTableBody">
+                <tr>
+                  <td colspan="2" class="text-center py-3 text-muted">Loading...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Specialty Modal Template -->
+<!-- Dynamically populated by SpecialtyManager.js -->

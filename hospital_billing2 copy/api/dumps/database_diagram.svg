@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800">
+  <style>
+    .table {
+      fill: #f8f9fa;
+      stroke: #343a40;
+      stroke-width: 2;
+    }
+    .table-header {
+      fill: #007bff;
+      stroke: #343a40;
+      stroke-width: 1;
+    }
+    .table-text {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      fill: #212529;
+    }
+    .header-text {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      fill: white;
+    }
+    .relationship {
+      stroke: #6c757d;
+      stroke-width: 1.5;
+      fill: none;
+      marker-end: url(#arrowhead);
+    }
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #212529;
+    }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#6c757d" />
+    </marker>
+  </defs>
+  
+  <text x="500" y="30" text-anchor="middle" class="title">Hospital Billing System Database Diagram</text>
+  
+  <!-- Patient Management -->
+  <g transform="translate(50, 70)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Patient</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: patientid</text>
+    <text x="10" y="70" class="table-text">FK: insuranceid</text>
+  </g>
+  
+  <g transform="translate(50, 200)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Insurance_Provider</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: insuranceid</text>
+  </g>
+  
+  <!-- Admission Management -->
+  <g transform="translate(300, 70)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Admission</text>
+    <rect y="30" width="150" height="80" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: admissionid</text>
+    <text x="10" y="70" class="table-text">FK: patientid</text>
+    <text x="10" y="90" class="table-text">FK: doctorid</text>
+    <text x="10" y="110" class="table-text">FK: userid</text>
+  </g>
+  
+  <g transform="translate(300, 200)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Room_Assignment</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: assignmentid</text>
+    <text x="10" y="70" class="table-text">FK: admissionid</text>
+    <text x="10" y="90" class="table-text">FK: room_no</text>
+  </g>
+  
+  <!-- Room Management -->
+  <g transform="translate(300, 330)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Room</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: room_no</text>
+    <text x="10" y="70" class="table-text">FK: categoryid</text>
+    <text x="10" y="90" class="table-text">FK: floorid</text>
+  </g>
+  
+  <g transform="translate(50, 330)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Room_Category</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: categoryid</text>
+  </g>
+  
+  <g transform="translate(50, 430)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Floor</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: floorid</text>
+  </g>
+  
+  <!-- Doctor Management -->
+  <g transform="translate(550, 70)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Doctor</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: doctorid</text>
+    <text x="10" y="70" class="table-text">FK: specialtyid</text>
+  </g>
+  
+  <g transform="translate(550, 200)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Specialty</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: specialtyid</text>
+  </g>
+  
+  <g transform="translate(550, 330)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Doctor_Assignment</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: assignmentid</text>
+    <text x="10" y="70" class="table-text">FK: admissionid</text>
+    <text x="10" y="90" class="table-text">FK: doctorid</text>
+  </g>
+  
+  <!-- Billing Management -->
+  <g transform="translate(800, 70)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Billing</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: billingid</text>
+    <text x="10" y="70" class="table-text">FK: admissionid</text>
+    <text x="10" y="90" class="table-text">FK: billing_categoryid</text>
+  </g>
+  
+  <g transform="translate(800, 200)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Billing_Category</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: billing_categoryid</text>
+  </g>
+  
+  <g transform="translate(800, 330)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Payment</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: paymentid</text>
+    <text x="10" y="70" class="table-text">FK: admissionid</text>
+    <text x="10" y="90" class="table-text">FK: insuranceid</text>
+  </g>
+  
+  <!-- Laboratory Management -->
+  <g transform="translate(50, 530)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Lab_Request</text>
+    <rect y="30" width="150" height="80" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: lab_requestid</text>
+    <text x="10" y="70" class="table-text">FK: admissionid</text>
+    <text x="10" y="90" class="table-text">FK: requestedBy</text>
+    <text x="10" y="110" class="table-text">FK: testid</text>
+  </g>
+  
+  <g transform="translate(300, 530)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Lab_Test</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: testid</text>
+    <text x="10" y="70" class="table-text">FK: categoryid</text>
+  </g>
+  
+  <g transform="translate(300, 650)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Lab_Test_Category</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: labtestcatid</text>
+  </g>
+  
+  <!-- Medication Management -->
+  <g transform="translate(550, 530)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Prescription</text>
+    <rect y="30" width="150" height="80" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: prescriptionid</text>
+    <text x="10" y="70" class="table-text">FK: admissionid</text>
+    <text x="10" y="90" class="table-text">FK: medicineid</text>
+    <text x="10" y="110" class="table-text">FK: doctorid</text>
+  </g>
+  
+  <g transform="translate(800, 530)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Medicine</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: medicineid</text>
+    <text x="10" y="70" class="table-text">FK: genericid</text>
+  </g>
+  
+  <g transform="translate(800, 650)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Generic_Medicine</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: genericid</text>
+  </g>
+  
+  <!-- User Management -->
+  <g transform="translate(550, 430)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">User</text>
+    <rect y="30" width="150" height="60" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: userid</text>
+    <text x="10" y="70" class="table-text">FK: roleid</text>
+  </g>
+  
+  <g transform="translate(800, 430)">
+    <rect width="150" height="30" class="table-header" rx="5" ry="5" />
+    <text x="75" y="20" text-anchor="middle" class="header-text">Role</text>
+    <rect y="30" width="150" height="40" class="table" rx="5" ry="5" />
+    <text x="10" y="50" class="table-text">PK: roleid</text>
+  </g>
+  
+  <!-- Relationships -->
+  <!-- Patient Management Relationships -->
+  <path d="M 125 130 L 125 200" class="relationship" />
+  <path d="M 200 100 L 300 100" class="relationship" />
+  
+  <!-- Admission Management Relationships -->
+  <path d="M 375 150 L 375 200" class="relationship" />
+  <path d="M 375 260 L 375 330" class="relationship" />
+  <path d="M 300 360 L 200 360" class="relationship" />
+  <path d="M 300 380 L 200 450" class="relationship" />
+  
+  <!-- Doctor Management Relationships -->
+  <path d="M 450 100 L 550 100" class="relationship" />
+  <path d="M 625 130 L 625 200" class="relationship" />
+  <path d="M 450 110 L 500 110 L 500 360 L 550 360" class="relationship" />
+  <path d="M 625 390 L 625 430" class="relationship" />
+  
+  <!-- Billing Management Relationships -->
+  <path d="M 450 90 L 700 90 L 700 100 L 800 100" class="relationship" />
+  <path d="M 875 130 L 875 200" class="relationship" />
+  <path d="M 450 120 L 700 120 L 700 360 L 800 360" class="relationship" />
+  <path d="M 800 380 L 125 230" class="relationship" />
+  
+  <!-- Laboratory Management Relationships -->
+  <path d="M 450 130 L 500 130 L 500 560 L 200 560" class="relationship" />
+  <path d="M 200 580 L 300 580" class="relationship" />
+  <path d="M 200 600 L 550 460" class="relationship" />
+  <path d="M 375 590 L 375 650" class="relationship" />
+  
+  <!-- Medication Management Relationships -->
+  <path d="M 450 140 L 480 140 L 480 560 L 550 560" class="relationship" />
+  <path d="M 700 560 L 800 560" class="relationship" />
+  <path d="M 700 580 L 550 100" class="relationship" />
+  <path d="M 875 590 L 875 650" class="relationship" />
+  
+  <!-- User Management Relationships -->
+  <path d="M 700 460 L 800 460" class="relationship" />
+  <path d="M 450 100 L 480 100 L 480 460 L 550 460" class="relationship" />
+</svg>
