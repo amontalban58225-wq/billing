@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital Admin Dashboard - Billing Module</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #1a73e8;
+      --secondary-color: #0d47a1;
+      --accent-color: #4caf50;
+      --light-color: #f5f9ff;
+      --dark-color: #0a1929;
+      --gray-color: #6c757d;
+      --success-color: #4caf50;
+      --warning-color: #ff9800;
+      --danger-color: #f44336;
+    }
+
+    body {
+      background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+    }
+
+    .billing-container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .billing-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .billing-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .billing-header h2 {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 5px;
+      font-size: 2rem;
+    }
+
+    .billing-header p {
+      color: var(--gray-color);
+      font-size: 1.1rem;
+    }
+
+    .billing-icon {
+      background: var(--primary-color);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 5px 15px rgba(26, 115, 232, 0.3);
+    }
+
+    .billing-icon i {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .filter-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 25px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .filter-section h5 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .form-control, .form-select {
+      padding: 12px 15px;
+      border-radius: 10px;
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s;
+      font-size: 1rem;
+    }
+
+    .form-control:focus, .form-select:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.25rem rgba(26, 115, 232, 0.25);
+    }
+
+    .btn-billing {
+      background: var(--primary-color);
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(26, 115, 232, 0.3);
+    }
+
+    .btn-billing:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(13, 71, 161, 0.4);
+    }
+
+    .btn-billing:active {
+      transform: translateY(0);
+    }
+
+    .btn-add-billing {
+      background: var(--accent-color);
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    }
+
+    .btn-add-billing:hover {
+      background: #388e3c;
+      box-shadow: 0 6px 15px rgba(56, 142, 60, 0.4);
+    }
+
+    .status-badge {
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .status-admitted {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+
+    .status-discharged {
+      background: #ffebee;
+      color: #d32f2f;
+    }
+
+    .status-pending {
+      background: #fff8e1;
+      color: #ff8f00;
+    }
+
+    .status-completed {
+      background: #e8f5e9;
+      color: #388e3c;
+    }
+
+    .status-despensed {
+      background: #f3e5f5;
+      color: #7b1fa2;
+    }
+
+    .table th {
+      font-weight: 600;
+      color: var(--dark-color);
+      border-top: none;
+    }
+
+    .table-hover tbody tr:hover {
+      background-color: rgba(26, 115, 232, 0.05);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      transition: all 0.2s;
+    }
+
+    .action-btn.view {
+      background: #e3f2fd;
+      color: #1976d2;
+    }
+
+    .action-btn.edit {
+      background: #fff8e1;
+      color: #ff8f00;
+    }
+
+    .action-btn.delete {
+      background: #ffebee;
+      color: #d32f2f;
+    }
+
+    .action-btn:hover {
+      transform: scale(1.1);
+    }
+
+    .total-section {
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 20px;
+      margin-top: 25px;
+      border: 1px solid #e0e0e0;
+    }
+
+    .total-section h5 {
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .total-amount {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--success-color);
+      margin: 10px 0;
+    }
+
+    .summary-stats {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .stat-card {
+      flex: 1;
+      min-width: 150px;
+      background: white;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+
+    .stat-label {
+      color: var(--gray-color);
+      font-size: 0.9rem;
+    }
+
+    .stat-card.completed .stat-value {
+      color: var(--success-color);
+    }
+
+    .stat-card.pending .stat-value {
+      color: var(--warning-color);
+    }
+
+    .stat-card.discharged .stat-value {
+      color: var(--danger-color);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--gray-color);
+    }
+
+    .empty-state i {
+      font-size: 4rem;
+      margin-bottom: 20px;
+      opacity: 0.3;
+    }
+
+    .empty-state h4 {
+      margin-bottom: 10px;
+      color: var(--dark-color);
+    }
+
+    @media (max-width: 768px) {
+      .billing-card {
+        padding: 20px 15px;
+      }
+
+      .summary-stats {
+        flex-direction: column;
+      }
+
+      .stat-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="billing-container">
+    <div class="billing-card">
+      <div class="billing-header">
+        <div class="billing-icon">
+          <i class="bi bi-receipt"></i>
+        </div>
+        <h2>Billing Management</h2>
+        <p>Track and manage patient billing based on admissions</p>
+      </div>
+
+      <div class="filter-section">
+        <h5><i class="bi bi-funnel"></i> Filter Billing Records</h5>
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label for="patientFilter" class="form-label">Patient</label>
+            <select class="form-select" id="patientFilter">
+              <option value="">All Patients</option>
+              <option value="1">John Smith</option>
+              <option value="2">Emily Johnson</option>
+              <option value="3">Michael Brown</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="statusFilter" class="form-label">Status</label>
+            <select class="form-select" id="statusFilter">
+              <option value="">All Statuses</option>
+              <option value="admitted">Admitted</option>
+              <option value="discharged">Discharged</option>
+              <option value="completed">Completed</option>
+              <option value="despensed">Despensed</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <label for="dateRange" class="form-label">Date Range</label>
+            <input type="date" class="form-control" id="dateRange">
+          </div>
+        </div>
+        <div class="mt-3 d-flex justify-content-end">
+          <button class="btn btn-billing me-2">
+            <i class="bi bi-search me-2"></i>Search
+          </button>
+          <button class="btn btn-add-billing">
+            <i class="bi bi-plus-circle me-2"></i>Add Manual Billing
+          </button>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h4 class="mb-0 text-primary">
+            <i class="bi bi-file-earmark-medical me-2"></i>Billing Records
+          </h4>
+          <p class="text-muted mb-0">List of all billing transactions</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>Patient</th>
+              <th>Admission ID</th>
+              <th>Service Type</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th width="150">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Smith</td>
+              <td>#A12345</td>
+              <td>Consultation</td>
+              <td>$150.00</td>
+              <td>2023-06-15</td>
+              <td><span class="status-badge status-completed">Completed</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn view" title="View Details">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="action-btn edit" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="action-btn delete" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Emily Johnson</td>
+              <td>#A12346</td>
+              <td>Lab Test</td>
+              <td>$85.00</td>
+              <td>2023-06-18</td>
+              <td><span class="status-badge status-despensed">Despensed</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn view" title="View Details">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="action-btn edit" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="action-btn delete" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Michael Brown</td>
+              <td>#A12347</td>
+              <td>Medication</td>
+              <td>$245.00</td>
+              <td>2023-06-20</td>
+              <td><span class="status-badge status-pending">Pending</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn view" title="View Details">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="action-btn edit" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="action-btn delete" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Sarah Williams</td>
+              <td>#A12348</td>
+              <td>Room Charge</td>
+              <td>$350.00</td>
+              <td>2023-06-22</td>
+              <td><span class="status-badge status-discharged">Discharged</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn view" title="View Details">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="action-btn edit" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="action-btn delete" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Robert Davis</td>
+              <td>#A12349</td>
+              <td>Procedure</td>
+              <td>$420.00</td>
+              <td>2023-06-25</td>
+              <td><span class="status-badge status-admitted">Admitted</span></td>
+              <td>
+                <div class="action-buttons">
+                  <button class="action-btn view" title="View Details">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="action-btn edit" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="action-btn delete" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="total-section">
+        <h5><i class="bi bi-currency-dollar"></i> Billing Summary</h5>
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <p class="mb-0">Total Amount Due</p>
+            <div class="total-amount">$1,250.00</div>
+          </div>
+          <div class="summary-stats">
+            <div class="stat-card completed">
+              <div class="stat-value">$750.00</div>
+              <div class="stat-label">Completed</div>
+            </div>
+            <div class="stat-card pending">
+              <div class="stat-value">$300.00</div>
+              <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-card discharged">
+              <div class="stat-value">$200.00</div>
+              <div class="stat-label">Discharged</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Simple functionality for demonstration
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add event listeners to action buttons
+      const actionButtons = document.querySelectorAll('.action-btn');
+      actionButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const action = this.classList.contains('view') ? 'View' :
+                        this.classList.contains('edit') ? 'Edit' : 'Delete';
+          const row = this.closest('tr');
+          const patient = row.cells[0].textContent;
+
+          alert(`${action} action for ${patient}`);
+        });
+      });
+
+      // Add manual billing button functionality
+      const addBillingBtn = document.querySelector('.btn-add-billing');
+      addBillingBtn.addEventListener('click', function() {
+        alert('Opening manual billing form...');
+      });
+
+      // Search button functionality
+      const searchBtn = document.querySelector('.btn-billing');
+      searchBtn.addEventListener('click', function() {
+        alert('Searching billing records...');
+      });
+    });
+  </script>
+</body>
+</html>

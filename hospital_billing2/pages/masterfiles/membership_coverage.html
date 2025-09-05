@@ -1,0 +1,117 @@
+<!-- membership_coverage.html - Membership Coverage Masterfile CRUD Interface -->
+<div class="container-fluid p-4">
+  <div class="row">
+    <div class="col-12">
+      <!-- Header -->
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+          <h3 class="mb-1 text-primary">
+            <i class="bi bi-shield-check me-2"></i>Membership Coverage Management
+          </h3>
+          <p class="text-muted mb-0">Manage insurance coverage plans, benefits, and limitations</p>
+        </div>
+        <button type="button" class="btn btn-primary" id="addCoverageBtn">
+          <i class="bi bi-plus-circle me-2"></i>Add New Coverage
+        </button>
+      </div>
+
+      <!-- Data Table -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-white">
+          <h5 class="mb-0">Coverage Plans</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0" id="coverageTable">
+              <thead class="table-light">
+                <tr>
+                  <th>ID</th>
+                  <th>Coverage Name</th>
+                  <th>Provider</th>
+                  <th>Type</th>
+                  <th>Annual Limit</th>
+                  <th>Room Coverage</th>
+                  <th>Status</th>
+                  <th width="200">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="coverageTableBody">
+                <!-- Placeholder data -->
+                <tr>
+                  <td><span class="badge bg-secondary">MC001</span></td>
+                  <td><strong>Premium Health Plan</strong></td>
+                  <td><span class="badge bg-info">Maxicare</span></td>
+                  <td><span class="badge bg-success">Comprehensive</span></td>
+                  <td><span class="badge bg-warning">₱500,000</span></td>
+                  <td><span class="badge bg-info">Private Room</span></td>
+                  <td><span class="badge bg-success">Active</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-info me-1" title="View Details">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-warning me-1" title="Edit Coverage">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" title="Delete Coverage">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="badge bg-secondary">MC002</span></td>
+                  <td><strong>Basic Health Plan</strong></td>
+                  <td><span class="badge bg-info">Medicard</span></td>
+                  <td><span class="badge bg-success">Standard</span></td>
+                  <td><span class="badge bg-warning">₱200,000</span></td>
+                  <td><span class="badge bg-info">Semi-Private</span></td>
+                  <td><span class="badge bg-success">Active</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-info me-1" title="View Details">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-warning me-1" title="Edit Coverage">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" title="Delete Coverage">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><span class="badge bg-secondary">MC003</span></td>
+                  <td><strong>PhilHealth Standard</strong></td>
+                  <td><span class="badge bg-info">PhilHealth</span></td>
+                  <td><span class="badge bg-success">Government</span></td>
+                  <td><span class="badge bg-warning">₱100,000</span></td>
+                  <td><span class="badge bg-info">Ward</span></td>
+                  <td><span class="badge bg-success">Active</span></td>
+                  <td>
+                    <button class="btn btn-sm btn-outline-info me-1" title="View Details">
+                      <i class="bi bi-eye"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-warning me-1" title="Edit Coverage">
+                      <i class="bi bi-pencil"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" title="Delete Coverage">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Card -->
+      <div class="card mt-4">
+        <div class="card-body text-center text-muted">
+          <i class="bi bi-shield-check display-4 mb-3 text-primary"></i>
+          <h4>Membership Coverage Masterfile</h4>
+          <p class="mb-0">CRUD interface coming soon. This module will allow you to manage insurance coverage plans, benefits, and limitations.</p>
+          <small class="text-muted">Features: Add, Edit, View, Delete coverage plans with benefit details and provider information.</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
